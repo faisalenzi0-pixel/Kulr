@@ -1,29 +1,32 @@
 import { NextResponse } from "next/server";
+import { createSign } from "crypto";
 
-// Google Indexing API — requires service account credentials
-// Setup:
-// 1. Enable "Web Search Indexing API" in Google Cloud Console
-// 2. Create a service account, download JSON key
-// 3. Add the service account email as an owner in Google Search Console
-// 4. Set GOOGLE_SERVICE_ACCOUNT_EMAIL and GOOGLE_PRIVATE_KEY env vars
+// Google Indexing API — credentials stored as base64 JSON in GOOGLE_SERVICE_ACCOUNT_JSON
 
 const SCOPES = ["https://www.googleapis.com/auth/indexing"];
 
-function base64url(str: string): string {
-  return Buffer.from(str)
-    .toString("base64")
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
+function base64url(input: Buffer | string): string {
+  const buf = typeof input === "string" ? Buffer.from(input) : input;
+  return buf.toString("base64url");
+}
+
+function getCredentials(): { email: string; privateKey: string } {
+  const jsonB64 = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
+  if (jsonB64) {
+    const json = JSON.parse(Buffer.from(jsonB64, "base64").toString("utf-8"));
+    return { email: json.client_email, privateKey: json.private_key };
+  }
+
+  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  if (!email || !privateKey) {
+    throw new Error("Missing Google service account credentials");
+  }
+  return { email, privateKey };
 }
 
 async function getAccessToken(): Promise<string> {
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
-
-  if (!email || !privateKey) {
-    throw new Error("Missing GOOGLE_SERVICE_ACCOUNT_EMAIL or GOOGLE_PRIVATE_KEY");
-  }
+  const { email, privateKey } = getCredentials();
 
   const now = Math.floor(Date.now() / 1000);
   const header = base64url(JSON.stringify({ alg: "RS256", typ: "JWT" }));
@@ -39,24 +42,12 @@ async function getAccessToken(): Promise<string> {
 
   const signingInput = `${header}.${payload}`;
 
-  // Import private key and sign
-  const key = await crypto.subtle.importKey(
-    "pkcs8",
-    pemToBinary(privateKey),
-    { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
-    false,
-    ["sign"]
-  );
+  // Use Node.js crypto (reliable on Vercel serverless)
+  const signer = createSign("RSA-SHA256");
+  signer.update(signingInput);
+  const signature = signer.sign(privateKey, "base64url");
 
-  const signature = await crypto.subtle.sign(
-    "RSASSA-PKCS1-v1_5",
-    key,
-    new TextEncoder().encode(signingInput)
-  );
-
-  const jwt = `${signingInput}.${base64url(
-    String.fromCharCode(...new Uint8Array(signature))
-  )}`;
+  const jwt = `${signingInput}.${signature}`;
 
   const res = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
@@ -67,15 +58,6 @@ async function getAccessToken(): Promise<string> {
   const data = await res.json();
   if (!data.access_token) throw new Error(`Token error: ${JSON.stringify(data)}`);
   return data.access_token;
-}
-
-function pemToBinary(pem: string): ArrayBuffer {
-  const lines = pem.split("\n").filter((l) => !l.startsWith("-----"));
-  const b64 = lines.join("");
-  const binary = atob(b64);
-  const bytes = new Uint8Array(binary.length);
-  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-  return bytes.buffer;
 }
 
 async function submitUrl(
@@ -110,7 +92,6 @@ export async function POST(request: Request) {
 
     const token = await getAccessToken();
 
-    // Google allows 200 requests per day for new sites
     const results = [];
     for (const url of urls.slice(0, 200)) {
       const result = await submitUrl(token, url, type);
@@ -128,14 +109,16 @@ export async function POST(request: Request) {
 }
 
 export async function GET() {
-  const hasCredentials =
-    !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL &&
-    !!process.env.GOOGLE_PRIVATE_KEY;
+  let configured = false;
+  try {
+    getCredentials();
+    configured = true;
+  } catch { /* not configured */ }
 
   return NextResponse.json({
-    configured: hasCredentials,
-    info: hasCredentials
+    configured,
+    info: configured
       ? "Google Indexing API is configured. POST URLs to submit."
-      : "Missing GOOGLE_SERVICE_ACCOUNT_EMAIL and/or GOOGLE_PRIVATE_KEY env vars.",
+      : "Missing Google service account credentials.",
   });
 }
