@@ -3,7 +3,7 @@
 ## What We Built
 Kulr is a professional color palette tool (Next.js 16 + Tailwind v4 + React 19).
 
-**Live Routes:** `/` (homepage), `/generate`, `/explore`, `/extract`, `/contrast`, `/visualizer`, `/gradient`, `/picker`, `/colors`, `/convert`, `/tailwind`, `/psychology`, `/brands`, `/brands/[slug]` (31 brand pages)
+**Live Routes:** `/` (homepage), `/generate`, `/explore`, `/extract`, `/contrast`, `/visualizer`, `/gradient`, `/picker`, `/colors`, `/convert`, `/tailwind`, `/psychology`, `/brands`, `/brands/[slug]` (52 brand pages)
 
 ---
 
@@ -63,23 +63,24 @@ Kulr is a professional color palette tool (Next.js 16 + Tailwind v4 + React 19).
 - **`/psychology`** — Interactive color psychology guide (9 colors), emotions, brands, usage tips, cultural associations
 
 ### Layer 2b: Brand Colors Directory
-- **`/brands`** — Browse 30+ iconic brand color palettes, search by name, filter by industry (8 categories)
-- **`/brands/[slug]`** — 31 individual brand pages (Apple, Google, Nike, Spotify, Tesla, etc.) with:
+- **`/brands`** — Browse 50+ iconic brand color palettes, search by name, filter by industry (12 categories)
+- **`/brands/[slug]`** — 52 individual brand pages (Apple, Google, Nike, Spotify, Tesla, Disney, BMW, etc.) with:
   - Interactive color strips, hex/RGB/HSL copy
   - Brand story & color meaning
   - Export as CSS Variables, Tailwind Config, SCSS, JSON
   - Per-page dynamic SEO (generateMetadata) with Organization JSON-LD
   - Canonical URLs, OG tags, unique keywords per brand
-- Industries: Tech, Social Media, Food & Beverage, Fashion & Retail, Gaming, Automotive, Entertainment, Finance
-- Data: `src/lib/brand-colors.ts` with 30 brands, each having slug, colors (with usage labels), story, founded year
+- Industries: Tech, Social Media, Food & Beverage, Fashion & Retail, Gaming, Automotive, Entertainment, Finance, Sports, Health & Beauty, Travel & Airlines, Media
+- Data: `src/lib/brand-colors.ts` with 52 brands, each having slug, colors (with usage labels), story, founded year
+- **Expansion (22 new brands):** Uber, Airbnb, Shopify, Notion, Figma, Dropbox, OpenAI, Pepsi, Burger King, Red Bull, Chanel, Louis Vuitton, Zara, BMW, Porsche, Lamborghini, NBA, NFL, Premier League, UFC, Dove, L'Oréal, Emirates, Booking.com, BBC, HBO, Visa, Robinhood, Disney, Hulu
 
 ### Navigation Updates
 - Navbar "More" dropdown with all 6 additional tools (including Brand Colors)
 - Mobile nav shows all 12 tools
 - Footer links to all 12 tools
-- Sitemap dynamically includes all 43 routes (13 static + 30 brand pages)
+- Sitemap dynamically includes all 65 routes (13 static + 52 brand pages)
 
-**Total pages: 48 (was 7). Targeting ~200K+ additional monthly searches.**
+**Total pages: 65 (was 7). Targeting ~300K+ additional monthly searches.**
 
 ---
 
@@ -123,7 +124,7 @@ Kulr is a professional color palette tool (Next.js 16 + Tailwind v4 + React 19).
 - `src/lib/curated-palettes.ts` — 134 curated palettes
 - `src/lib/color-engine.ts` — Palette generation algorithms
 - `src/lib/color-convert.ts` — Color format conversions
-- `src/lib/brand-colors.ts` — 30 brand color palettes
+- `src/lib/brand-colors.ts` — 52 brand color palettes
 - `src/lib/css-colors.ts` — 170+ named colors database
 - `src/lib/tailwind-colors.ts` — Tailwind v4 full palette data
 - `src/components/export-modal.tsx` — Export dialog

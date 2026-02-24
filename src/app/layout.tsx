@@ -59,6 +59,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://kulr.app",
   },
+  verification: {
+    google: "HDPjXDKz-KclvYCnqyFbOiBcpqH1RxfNjQWxSrr5fQs",
+  },
   robots: {
     index: true,
     follow: true,
