@@ -623,7 +623,10 @@ export default function HomePage() {
 
           <div className="mt-12 pt-8 border-t border-[var(--color-border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--color-text-muted)]">
             <span>&copy; {new Date().getFullYear()} Kulr. All rights reserved.</span>
-            <span>Crafted with precision.</span>
+            <div className="flex items-center gap-4">
+              <Link href="/privacy" className="hover:text-[var(--color-text-secondary)] transition-colors">Privacy</Link>
+              <Link href="/terms" className="hover:text-[var(--color-text-secondary)] transition-colors">Terms</Link>
+            </div>
           </div>
         </div>
       </footer>

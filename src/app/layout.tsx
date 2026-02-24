@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/og-image.svg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Kulr — Free Color Palette Generator & Design Tools",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Kulr — Free Color Palette Generator & Design Tools",
     description:
       "Generate palettes, extract colors from images, check contrast, build gradients. The complete free color toolkit.",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://kulr.app",
