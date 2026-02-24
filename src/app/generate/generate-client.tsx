@@ -675,7 +675,11 @@ function GenerateContent() {
             Export
           </button>
 
-          <ToolbarBtn onClick={sharePalette} title="Share Palette"><IconShare /></ToolbarBtn>
+          <button onClick={sharePalette} title="Share Palette"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-[#06B6D4] hover:bg-[#0891B2] transition-all hover:scale-[1.03] active:scale-[0.97] shadow-sm shadow-cyan-500/20">
+            <IconShare size={14} />
+            <span className="hidden sm:inline">Share</span>
+          </button>
 
           <div className="w-px h-6 bg-overlay-6" />
 
