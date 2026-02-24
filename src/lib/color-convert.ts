@@ -76,3 +76,62 @@ export function formatHsl(hex: string): string {
   const { h, s, l } = hexToHsl(hex);
   return `hsl(${Math.round(h)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
 }
+
+// ─── HSB/HSV ─────────────────────────────────────────────────────────────────
+
+export function rgbToHsb(r: number, g: number, b: number): { h: number; s: number; b: number } {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const d = max - min;
+  let h = 0;
+  if (d !== 0) {
+    if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+    else if (max === g) h = ((b - r) / d + 2) / 6;
+    else h = ((r - g) / d + 4) / 6;
+  }
+  return { h: h * 360, s: max === 0 ? 0 : d / max, b: max };
+}
+
+export function hsbToRgb(h: number, s: number, v: number): RGB {
+  h = ((h % 360) + 360) % 360;
+  const c = v * s;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = v - c;
+  let r = 0, g = 0, b = 0;
+  if (h < 60) { r = c; g = x; }
+  else if (h < 120) { r = x; g = c; }
+  else if (h < 180) { g = c; b = x; }
+  else if (h < 240) { g = x; b = c; }
+  else if (h < 300) { r = x; b = c; }
+  else { r = c; b = x; }
+  return {
+    r: Math.round((r + m) * 255),
+    g: Math.round((g + m) * 255),
+    b: Math.round((b + m) * 255),
+  };
+}
+
+// ─── CMYK ────────────────────────────────────────────────────────────────────
+
+export function rgbToCmyk(r: number, g: number, b: number): { c: number; m: number; y: number; k: number } {
+  if (r === 0 && g === 0 && b === 0) return { c: 0, m: 0, y: 0, k: 100 };
+  const rr = r / 255, gg = g / 255, bb = b / 255;
+  const k = 1 - Math.max(rr, gg, bb);
+  return {
+    c: Math.round(((1 - rr - k) / (1 - k)) * 100),
+    m: Math.round(((1 - gg - k) / (1 - k)) * 100),
+    y: Math.round(((1 - bb - k) / (1 - k)) * 100),
+    k: Math.round(k * 100),
+  };
+}
+
+// ─── HWB ─────────────────────────────────────────────────────────────────────
+
+export function rgbToHwb(r: number, g: number, b: number): { h: number; w: number; b: number } {
+  const hsl = rgbToHsl(r, g, b);
+  return {
+    h: Math.round(hsl.h),
+    w: Math.round((Math.min(r, g, b) / 255) * 100),
+    b: Math.round((1 - Math.max(r, g, b) / 255) * 100),
+  };
+}

@@ -1,6 +1,8 @@
 // Tailwind CSS v4 Default Color Palette
 // Used by /tailwind page — targets "tailwind colors", "tailwind color palette"
 
+import { hexToRgb } from "./color-convert";
+
 export interface TailwindShade {
   shade: number;
   hex: string;
@@ -9,6 +11,21 @@ export interface TailwindShade {
 export interface TailwindColor {
   name: string;
   shades: TailwindShade[];
+}
+
+export function findNearestTailwind(hex: string): { name: string; shade: number; hex: string; distance: number } {
+  const { r, g, b } = hexToRgb(hex);
+  let best = { name: "", shade: 0, hex: "", distance: Infinity };
+  for (const color of TAILWIND_COLORS) {
+    for (const s of color.shades) {
+      const t = hexToRgb(s.hex);
+      const d = Math.sqrt((r - t.r) ** 2 + (g - t.g) ** 2 + (b - t.b) ** 2);
+      if (d < best.distance) {
+        best = { name: color.name.toLowerCase(), shade: s.shade, hex: s.hex, distance: d };
+      }
+    }
+  }
+  return best;
 }
 
 export const TAILWIND_COLORS: TailwindColor[] = [
