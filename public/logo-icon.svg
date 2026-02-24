@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 72" fill="none">
+  <defs>
+    <linearGradient id="ki" x1="0" y1="0" x2="56" y2="72" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="50%" stop-color="#EC4899"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+  <!-- k lettermark -->
+  <path d="M4 8 L4 64 L14 64 L14 42 L16 39.5 L36.5 64 L49 64 L24 35.5 L47 8 L34.5 8 L14 35 L14 8 Z" fill="url(#ki)"/>
+</svg>

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="og-grad" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="50%" stop-color="#EC4899"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="og-orb1" x1="0" y1="0" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#EC4899" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="og-orb2" x1="800" y1="200" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#EC4899" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="og-blur1" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="80"/>
+    </filter>
+    <filter id="og-blur2" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="60"/>
+    </filter>
+    <!-- Logo gradient for the text -->
+    <linearGradient id="og-logo-grad" x1="380" y1="220" x2="820" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="45%" stop-color="#EC4899"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0A0A0B"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.03">
+    <line x1="0" y1="0" x2="0" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="100" y1="0" x2="100" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="200" y1="0" x2="200" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="300" y1="0" x2="300" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="400" y1="0" x2="400" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="500" y1="0" x2="500" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="700" y1="0" x2="700" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="800" y1="0" x2="800" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="900" y1="0" x2="900" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="1000" y1="0" x2="1000" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="1100" y1="0" x2="1100" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="1200" y1="0" x2="1200" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="100" x2="1200" y2="100" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="200" x2="1200" y2="200" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="300" x2="1200" y2="300" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="400" x2="1200" y2="400" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="500" x2="1200" y2="500" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="600" x2="1200" y2="600" stroke="white" stroke-width="1"/>
+  </g>
+
+  <!-- Ambient glow orbs -->
+  <circle cx="200" cy="180" r="250" fill="url(#og-orb1)" filter="url(#og-blur1)"/>
+  <circle cx="1000" cy="450" r="200" fill="url(#og-orb2)" filter="url(#og-blur2)"/>
+
+  <!-- Top gradient accent line -->
+  <rect x="0" y="0" width="1200" height="2" fill="url(#og-grad)" opacity="0.6"/>
+
+  <!-- Color palette strip — 5 swatches -->
+  <g transform="translate(340, 140)">
+    <rect x="0" y="0" width="90" height="50" rx="8" fill="#8B5CF6"/>
+    <rect x="105" y="0" width="90" height="50" rx="8" fill="#A855F7"/>
+    <rect x="210" y="0" width="90" height="50" rx="8" fill="#EC4899"/>
+    <rect x="315" y="0" width="90" height="50" rx="8" fill="#F472B6"/>
+    <rect x="420" y="0" width="90" height="50" rx="8" fill="#F59E0B"/>
+  </g>
+
+  <!-- Logo: "kulr" in large geometric letters -->
+  <g fill="url(#og-logo-grad)" transform="translate(340, 240)">
+    <!-- k -->
+    <path d="M0 0 L0 120 L20 120 L20 70 L24 65 L60 120 L84 120 L40 58 L80 0 L56 0 L20 56 L20 0 Z"/>
+    <!-- u -->
+    <path d="M100 36 L100 90 C100 108 114 122 136 122 C158 122 172 108 172 90 L172 36 L152 36 L152 88 C152 96 146 102 136 102 C126 102 120 96 120 88 L120 36 Z"/>
+    <!-- l -->
+    <path d="M192 0 L192 120 L212 120 L212 0 Z"/>
+    <!-- r -->
+    <path d="M234 36 L234 120 L254 120 L254 68 C254 54 264 46 278 46 L290 46 L290 28 L278 28 C266 28 258 34 254 42 L254 36 Z"/>
+  </g>
+
+  <!-- Tagline -->
+  <text x="600" y="430" text-anchor="middle" fill="#8B8B8E" font-family="Inter, system-ui, sans-serif" font-size="24" font-weight="400" letter-spacing="0.5">Colors that click.</text>
+
+  <!-- Bottom accent: small color dots -->
+  <g transform="translate(550, 480)">
+    <circle cx="0" cy="0" r="4" fill="#8B5CF6" opacity="0.6"/>
+    <circle cx="25" cy="0" r="4" fill="#EC4899" opacity="0.6"/>
+    <circle cx="50" cy="0" r="4" fill="#F59E0B" opacity="0.6"/>
+    <circle cx="75" cy="0" r="4" fill="#22C55E" opacity="0.6"/>
+    <circle cx="100" cy="0" r="4" fill="#3B82F6" opacity="0.6"/>
+  </g>
+
+  <!-- URL -->
+  <text x="600" y="560" text-anchor="middle" fill="#505054" font-family="JetBrains Mono, monospace" font-size="14" font-weight="400">kulr.app</text>
+</svg>
