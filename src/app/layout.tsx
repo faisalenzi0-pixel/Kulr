@@ -63,6 +63,12 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "HDPjXDKz-KclvYCnqyFbOiBcpqH1RxfNjQWxSrr5fQs",
+    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
+    other: {
+      ...(process.env.NEXT_PUBLIC_BING_VERIFICATION && {
+        "msvalidate.01": [process.env.NEXT_PUBLIC_BING_VERIFICATION],
+      }),
+    },
   },
   robots: {
     index: true,
