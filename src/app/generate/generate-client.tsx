@@ -11,9 +11,10 @@ import type { PaletteMood } from "@/lib/color-engine";
 import { ExportModal } from "@/components/export-modal";
 import { FavoritesPanel } from "@/components/favorites-panel";
 import { useSearchParams } from "next/navigation";
-import { decodePalette } from "@/lib/palette-utils";
-import type { GradientType } from "@/lib/types";
+import { decodePalette, encodePalette } from "@/lib/palette-utils";
+import type { GradientType, ColorBlindType } from "@/lib/types";
 import { paletteToGradient, generateGradientCSS } from "@/lib/gradient-engine";
+import { simulatePalette } from "@/lib/color-blind";
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
@@ -83,6 +84,20 @@ function IconLayout({ size = 16 }: { size?: number }) {
 function IconChevron({ size = 12 }: { size?: number }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>;
 }
+function IconShare({ size = 16 }: { size?: number }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /></svg>;
+}
+function IconEye({ size = 16 }: { size?: number }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg>;
+}
+
+const CB_MODES: { value: ColorBlindType | "none"; label: string }[] = [
+  { value: "none", label: "Normal Vision" },
+  { value: "protanopia", label: "Protanopia (Red)" },
+  { value: "deuteranopia", label: "Deuteranopia (Green)" },
+  { value: "tritanopia", label: "Tritanopia (Blue)" },
+  { value: "achromatopsia", label: "Achromatopsia (Mono)" },
+];
 
 // ─── Color Column ───────────────────────────────────────────────────────────
 
@@ -447,8 +462,21 @@ function GenerateContent() {
   const [gradientAngle, setGradientAngle] = useState(90);
   const [showVisualizer, setShowVisualizer] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
+  const [cbMode, setCbMode] = useState<ColorBlindType | "none">("none");
 
   const searchParams = useSearchParams();
+
+  // Compute display colors (normal or color-blind simulated)
+  const displayColors = useMemo(
+    () => cbMode === "none" ? colors : simulatePalette(colors, cbMode),
+    [colors, cbMode]
+  );
+
+  const sharePalette = useCallback(() => {
+    const url = `${window.location.origin}/generate?colors=${encodePalette(colors)}`;
+    navigator.clipboard.writeText(url);
+    toast.success("Share link copied!");
+  }, [colors]);
 
   useEffect(() => {
     const urlColors = searchParams.get("colors");
@@ -512,14 +540,14 @@ function GenerateContent() {
         <div className="flex-1 flex flex-col min-w-0 overflow-y-auto md:overflow-hidden">
           <AnimatePresence mode="wait">
             {gradientMode ? (
-              <GradientView key="gradient" colors={colors} gradientType={gradientType} gradientAngle={gradientAngle}
+              <GradientView key="gradient" colors={displayColors} gradientType={gradientType} gradientAngle={gradientAngle}
                 onSetGradientType={setGradientType} onSetGradientAngle={setGradientAngle} />
             ) : (
               <motion.div key="columns" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                 className="flex-1 flex flex-col md:flex-row p-3 md:p-5 gap-2 md:gap-3 md:min-h-0">
-                {colors.map((color, i) => (
+                {displayColors.map((color, i) => (
                   <ColorColumn key={`${i}-${colors.length}`} color={color} index={i} locked={locked[i]} total={colors.length}
-                    onToggleLock={() => toggleLock(i)} onCopy={() => copyColor(color)}
+                    onToggleLock={() => toggleLock(i)} onCopy={() => copyColor(colors[i])}
                     onSetColor={(hex) => setColor(i, hex)} onRemove={() => removeColor(i)} />
                 ))}
               </motion.div>
@@ -554,6 +582,19 @@ function GenerateContent() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Color blindness mode banner */}
+      <AnimatePresence>
+        {cbMode !== "none" && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+            className="bg-amber-500/10 border-t border-amber-500/20 px-4 py-2 text-center overflow-hidden">
+            <span className="text-xs font-medium text-amber-400">
+              Simulating {CB_MODES.find(m => m.value === cbMode)?.label} — colors shown are approximations
+            </span>
+            <button onClick={() => setCbMode("none")} className="ml-3 text-xs text-amber-400/70 hover:text-amber-400 underline">Reset</button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── Bottom Toolbar ── centered, clean */}
       <div className="glass border-t border-[var(--color-border)] px-4 sm:px-6 py-3">
@@ -633,6 +674,13 @@ function GenerateContent() {
             title="Export (E)">
             Export
           </button>
+
+          <ToolbarBtn onClick={sharePalette} title="Share Palette"><IconShare /></ToolbarBtn>
+
+          <div className="w-px h-6 bg-overlay-6" />
+
+          {/* Color blindness sim */}
+          <Dropdown label="Vision" value={cbMode} options={CB_MODES} onChange={(v) => setCbMode(v as ColorBlindType | "none")} />
         </div>
       </div>
 
