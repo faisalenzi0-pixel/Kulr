@@ -19,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/tailwind", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/psychology", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/brands", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/guides/how-to-choose-a-color-palette", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/guides/wcag-color-contrast-guide", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/privacy", priority: 0.3, changeFrequency: "yearly" as const },
     { path: "/terms", priority: 0.3, changeFrequency: "yearly" as const },
   ];

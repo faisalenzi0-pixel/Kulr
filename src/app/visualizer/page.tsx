@@ -981,6 +981,25 @@ export default function VisualizerPage() {
             ))}
           </div>
         </motion.div>
+
+        {/* Related Tools */}
+        <div className="mt-12 max-w-3xl mx-auto">
+          <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-widest mb-4">Related Tools</h3>
+          <div className="flex flex-wrap gap-3">
+            {[
+              { href: "/generate", label: "Generate palettes" },
+              { href: "/contrast", label: "Check contrast" },
+              { href: "/gradient", label: "Build gradients" },
+              { href: "/extract", label: "Extract from image" },
+              { href: "/explore", label: "Browse palettes" },
+              { href: "/picker", label: "Color picker" },
+            ].map((link) => (
+              <Link key={link.href} href={link.href} className="text-sm font-medium text-[var(--color-accent-purple)] hover:underline">
+                {link.label} &rarr;
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

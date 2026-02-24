@@ -668,6 +668,45 @@ export default function PickerPage() {
           </Section>
         </div>
 
+        {/* ═══════════ FAQ ═══════════ */}
+        <section className="max-w-3xl mx-auto mb-12">
+          <h2 className="text-2xl font-bold tracking-tight mb-6">Frequently Asked Questions</h2>
+          <div className="space-y-3">
+            {[
+              {
+                q: "What is a color picker used for?",
+                a: "A color picker lets you select any color visually and get its exact code in formats like HEX (#FF5733), RGB (255, 87, 51), HSL, HSB, CMYK, and HWB. Designers and developers use it to find precise colors for websites, apps, logos, and digital art.",
+              },
+              {
+                q: "What is the difference between HSB and HSL?",
+                a: "HSB (Hue, Saturation, Brightness) and HSL (Hue, Saturation, Lightness) are both ways to describe color, but HSB is more intuitive for designers. In HSB, 100% brightness with 100% saturation gives you the pure hue. HSB is the model used by Photoshop, Figma, and Sketch. Kulr supports both formats.",
+              },
+              {
+                q: "How do I pick a color from my screen?",
+                a: "Kulr integrates the EyeDropper API (available in Chrome and Edge) that lets you click anywhere on your screen to pick a color. Click the Eyedropper button, then click any pixel on your screen. The color code is captured instantly in all 6 formats.",
+              },
+              {
+                q: "What are color harmonies?",
+                a: "Color harmonies are combinations of colors that look visually pleasing together, based on their positions on the color wheel. Kulr generates 5 harmony types: complementary, analogous, triadic, split-complementary, and tetradic — all visualized on an interactive color wheel.",
+              },
+            ].map((item) => (
+              <details key={item.q} className="group surface rounded-xl border border-[var(--color-border)] overflow-hidden">
+                <summary className="flex items-center justify-between px-5 py-4 cursor-pointer text-sm font-semibold hover:bg-overlay-3 transition-colors select-none">
+                  {item.q}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                    className="shrink-0 ml-3 text-[var(--color-text-muted)] transition-transform duration-200 group-open:rotate-180"
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </summary>
+                <div className="px-5 pb-4 text-sm text-[var(--color-text-secondary)] leading-relaxed">
+                  {item.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
         {/* ═══════════ SEO CONTENT ═══════════ */}
         <section className="max-w-3xl mx-auto">
           <h2 className="text-2xl font-bold tracking-tight mb-6">Professional Online Color Picker</h2>

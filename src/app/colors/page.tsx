@@ -42,7 +42,10 @@ function ColorCard({ color }: { color: NamedColor }) {
 
       {/* Info */}
       <div className="p-3.5 bg-[var(--color-surface)]">
-        <div className="font-semibold text-sm tracking-tight mb-1.5">{color.name}</div>
+        <Link href={`/colors/${color.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`}
+          className="font-semibold text-sm tracking-tight mb-1.5 block hover:text-[var(--color-accent-purple)] transition-colors">
+          {color.name}
+        </Link>
         <div className="flex flex-wrap gap-1.5">
           <button
             onClick={() => copyToClipboard(color.hex, "HEX")}

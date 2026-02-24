@@ -676,6 +676,11 @@ export default function HomePage() {
                   <Link key={item.href} href={item.href} className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-200">{item.label}</Link>
                 ))}
               </div>
+              <p className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-widest mb-4 mt-8">Guides</p>
+              <div className="flex flex-col gap-2.5">
+                <Link href="/guides/how-to-choose-a-color-palette" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-200">Choose a Palette</Link>
+                <Link href="/guides/wcag-color-contrast-guide" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-200">WCAG Contrast Guide</Link>
+              </div>
               <p className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-widest mb-4 mt-8">Legal</p>
               <div className="flex flex-col gap-2.5">
                 <Link href="/privacy" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-200">Privacy Policy</Link>
