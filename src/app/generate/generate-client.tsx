@@ -509,14 +509,14 @@ function GenerateContent() {
       <h1 className="sr-only">Color Palette Generator — Free Online Tool</h1>
       {/* Main content */}
       <div className="flex-1 flex min-h-0 overflow-hidden">
-        <div className="flex-1 flex flex-col min-w-0">
+        <div className="flex-1 flex flex-col min-w-0 overflow-y-auto md:overflow-hidden">
           <AnimatePresence mode="wait">
             {gradientMode ? (
               <GradientView key="gradient" colors={colors} gradientType={gradientType} gradientAngle={gradientAngle}
                 onSetGradientType={setGradientType} onSetGradientAngle={setGradientAngle} />
             ) : (
               <motion.div key="columns" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                className="flex-1 flex flex-col md:flex-row p-3 md:p-5 gap-2 md:gap-3">
+                className="flex-1 flex flex-col md:flex-row p-3 md:p-5 gap-2 md:gap-3 md:min-h-0">
                 {colors.map((color, i) => (
                   <ColorColumn key={`${i}-${colors.length}`} color={color} index={i} locked={locked[i]} total={colors.length}
                     onToggleLock={() => toggleLock(i)} onCopy={() => copyColor(color)}
