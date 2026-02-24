@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Toaster } from "react-hot-toast";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -62,6 +63,16 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "HDPjXDKz-KclvYCnqyFbOiBcpqH1RxfNjQWxSrr5fQs",
+    ...(process.env.NEXT_PUBLIC_BING_VERIFICATION && {
+      other: {
+        "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION,
+      },
+    }),
+  },
+  other: {
+    ...(process.env.NEXT_PUBLIC_YANDEX_VERIFICATION && {
+      "yandex-verification": process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
+    }),
   },
   robots: {
     index: true,
@@ -143,6 +154,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         </ThemeProvider>
         <Analytics />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );
