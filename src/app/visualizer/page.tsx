@@ -848,17 +848,17 @@ export default function VisualizerPage() {
           className="mb-10"
         >
           <h1 className="text-4xl sm:text-5xl font-bold mb-3">
-            <span className="gradient-text">Visualize</span> Your Palette
+            <span className="gradient-text">Color Palette</span> Visualizer
           </h1>
-          <p className="text-[var(--color-text-secondary)] text-lg max-w-xl">
-            See how your colors look on real UI templates.{" "}
+          <p className="text-[var(--color-text-secondary)] text-lg max-w-xl leading-relaxed">
+            Preview your color palettes on real UI templates — dashboards, landing pages, mobile apps, and e-commerce layouts.{" "}
             <Link
               href="/generate"
               className="text-[var(--color-accent-purple)] hover:underline"
             >
               Generate a palette
             </Link>{" "}
-            first, then preview it here.
+            first, then visualize it here. Free online color visualization tool.
           </p>
         </motion.div>
 

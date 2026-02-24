@@ -376,11 +376,14 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 32, filter: "blur(8px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.8, delay: 0.12, ease }}
-            className="text-[3.2rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7rem] font-bold tracking-[-0.035em] leading-[0.95] mb-8"
+            className="mb-8"
           >
-            Colors that
-            <br />
-            <span className="gradient-text">click.</span>
+            <span className="block text-base sm:text-lg font-semibold text-[var(--color-text-secondary)] tracking-tight mb-4">Free Color Palette Generator &amp; Design Tools</span>
+            <span className="block text-[3.2rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7rem] font-bold tracking-[-0.035em] leading-[0.95]">
+              Colors that
+              <br />
+              <span className="gradient-text">click.</span>
+            </span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -390,8 +393,8 @@ export default function HomePage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-lg md:text-xl lg:text-2xl text-[var(--color-text-secondary)] mb-14 max-w-2xl mx-auto leading-relaxed font-light"
           >
-            The complete color toolkit for designers and developers.
-            <span className="hidden sm:inline"> Generate, extract, contrast-check, visualize — all in one place.</span>
+            The complete free color palette generator for designers and developers.
+            <span className="hidden sm:inline"> Generate palettes, extract colors from images, check contrast, build gradients — all in one place.</span>
           </motion.p>
 
           {/* CTA */}

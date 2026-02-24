@@ -85,11 +85,10 @@ export default function ExtractPage() {
           className="mb-10"
         >
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-3">
-            <span className="gradient-text">Extract</span> Colors
+            <span className="gradient-text">Extract Colors</span> from Image
           </h1>
           <p className="text-[var(--color-text-secondary)] text-base md:text-lg max-w-xl leading-relaxed">
-            Drop an image and get its dominant colors instantly.
-            Everything runs in your browser — nothing leaves your device.
+            Get a color palette from any photo instantly. Drop an image and extract its dominant colors using K-means clustering — all processing runs in your browser, 100% private. Free online color extractor.
           </p>
         </motion.div>
 

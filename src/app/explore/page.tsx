@@ -244,11 +244,10 @@ export default function ExplorePage() {
           className="mb-10"
         >
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-3">
-            <span className="gradient-text">Explore</span> Palettes
+            <span className="gradient-text">Explore</span> {curatedPalettes.length}+ Color Palettes
           </h1>
           <p className="text-[var(--color-text-secondary)] text-base md:text-lg max-w-xl leading-relaxed">
-            {curatedPalettes.length} hand-picked palettes ready to use.
-            Click any to open in the generator.
+            Browse our curated collection of color palettes, filtered by mood, style, season, and industry. Trending 2026 schemes, Material, Tailwind, and brand-inspired combinations — click any to open in the generator.
           </p>
         </motion.div>
 

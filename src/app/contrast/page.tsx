@@ -151,10 +151,10 @@ export default function ContrastPage() {
           className="mb-10"
         >
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-3">
-            <span className="gradient-text">Contrast</span> Checker
+            <span className="gradient-text">Color Contrast</span> Checker
           </h1>
           <p className="text-[var(--color-text-secondary)] text-base md:text-lg max-w-xl leading-relaxed">
-            WCAG 2.1 compliance at a glance. Make sure your text is readable for everyone.
+            Check color contrast ratios against WCAG 2.1 AA and AAA standards in real time. Auto-suggest accessible alternatives and simulate color blindness — free, no sign-up.
           </p>
         </motion.div>
 

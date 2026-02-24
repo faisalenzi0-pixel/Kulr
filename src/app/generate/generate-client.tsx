@@ -534,7 +534,11 @@ function GenerateContent() {
 
   return (
     <div className="h-[100dvh] flex flex-col pt-14">
-      <h1 className="sr-only">Color Palette Generator — Free Online Tool</h1>
+      {/* SEO header — compact visible strip */}
+      <div className="px-4 md:px-6 pt-2 pb-1.5 flex items-baseline gap-3 shrink-0">
+        <h1 className="text-sm font-bold tracking-tight text-[var(--color-text)]">Color Palette Generator</h1>
+        <p className="text-xs text-[var(--color-text-muted)] hidden sm:block">Generate beautiful color palettes with harmony modes and mood filters — free, no sign-up.</p>
+      </div>
       {/* Main content */}
       <div className="flex-1 flex min-h-0 overflow-hidden">
         <div className="flex-1 flex flex-col min-w-0 overflow-y-auto md:overflow-hidden">

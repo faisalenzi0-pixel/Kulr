@@ -129,11 +129,10 @@ export default function GradientPage() {
           className="mb-10"
         >
           <h1 className="text-4xl sm:text-5xl font-bold mb-3">
-            <span className="gradient-text">Gradient</span> Maker
+            <span className="gradient-text">CSS Gradient</span> Generator
           </h1>
-          <p className="text-[var(--color-text-secondary)] text-lg max-w-xl">
-            Create beautiful CSS gradients with full control over stops, type,
-            and direction. Copy the CSS with one click.
+          <p className="text-[var(--color-text-secondary)] text-lg max-w-xl leading-relaxed">
+            Build beautiful linear, radial, and conic CSS gradients with a visual multi-stop editor. Adjust colors, angles, and positions — then copy production-ready CSS code instantly. Free online gradient maker.
           </p>
         </motion.div>
 
