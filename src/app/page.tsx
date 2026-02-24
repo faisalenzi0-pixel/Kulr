@@ -584,46 +584,71 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ FOOTER ═══════════ */}
-      <footer className="border-t border-[var(--color-border-subtle)] px-4 py-12 md:py-16">
+      <footer className="border-t border-[var(--color-border-subtle)] px-4 py-14 md:py-20">
         <div className="max-w-[1200px] mx-auto">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-            {/* Left — brand */}
-            <div>
-              <div className="gradient-text font-bold text-xl tracking-tight mb-2">kulr</div>
-              <p className="text-sm text-[var(--color-text-muted)] max-w-xs">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-10 lg:gap-14">
+            {/* Brand */}
+            <div className="col-span-2 sm:col-span-4 lg:col-span-1 mb-4 lg:mb-0">
+              <div className="gradient-text font-bold text-xl tracking-tight mb-3">kulr</div>
+              <p className="text-sm text-[var(--color-text-muted)] max-w-xs leading-relaxed">
                 Professional color tools, free forever. Built for designers who care about every pixel.
               </p>
             </div>
 
-            {/* Links */}
-            <div className="flex flex-wrap gap-x-10 gap-y-3">
-              <div>
-                <p className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-widest mb-3">Tools</p>
-                <div className="flex flex-col gap-2">
-                  {[
-                    { href: "/generate", label: "Generate" },
-                    { href: "/explore", label: "Explore" },
-                    { href: "/extract", label: "Extract" },
-                    { href: "/contrast", label: "Contrast" },
-                    { href: "/visualizer", label: "Visualizer" },
-                    { href: "/gradient", label: "Gradient" },
-                    { href: "/picker", label: "Color Picker" },
-                    { href: "/colors", label: "Color Names" },
-                    { href: "/convert", label: "Converter" },
-                    { href: "/tailwind", label: "Tailwind Colors" },
-                    { href: "/psychology", label: "Color Psychology" },
-                    { href: "/brands", label: "Brand Colors" },
-                  ].map((item) => (
-                    <Link key={item.href} href={item.href} className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-200">{item.label}</Link>
-                  ))}
-                </div>
+            {/* Generators */}
+            <div>
+              <p className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-widest mb-4">Create</p>
+              <div className="flex flex-col gap-2.5">
+                {[
+                  { href: "/generate", label: "Palette Generator" },
+                  { href: "/gradient", label: "Gradient Builder" },
+                  { href: "/picker", label: "Color Picker" },
+                  { href: "/extract", label: "Image Extractor" },
+                  { href: "/visualizer", label: "UI Visualizer" },
+                ].map((item) => (
+                  <Link key={item.href} href={item.href} className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-200">{item.label}</Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Explore */}
+            <div>
+              <p className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-widest mb-4">Explore</p>
+              <div className="flex flex-col gap-2.5">
+                {[
+                  { href: "/explore", label: "Curated Palettes" },
+                  { href: "/colors", label: "Color Names" },
+                  { href: "/tailwind", label: "Tailwind Colors" },
+                  { href: "/brands", label: "Brand Colors" },
+                  { href: "/psychology", label: "Color Psychology" },
+                ].map((item) => (
+                  <Link key={item.href} href={item.href} className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-200">{item.label}</Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Tools + Legal */}
+            <div>
+              <p className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-widest mb-4">Tools</p>
+              <div className="flex flex-col gap-2.5">
+                {[
+                  { href: "/contrast", label: "Contrast Checker" },
+                  { href: "/convert", label: "Color Converter" },
+                ].map((item) => (
+                  <Link key={item.href} href={item.href} className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-200">{item.label}</Link>
+                ))}
+              </div>
+              <p className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-widest mb-4 mt-8">Legal</p>
+              <div className="flex flex-col gap-2.5">
+                <Link href="/privacy" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-200">Privacy Policy</Link>
+                <Link href="/terms" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-200">Terms of Service</Link>
               </div>
             </div>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-[var(--color-border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--color-text-muted)]">
+          <div className="mt-14 pt-8 border-t border-[var(--color-border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--color-text-muted)]">
             <span>&copy; {new Date().getFullYear()} Kulr. All rights reserved.</span>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               <Link href="/privacy" className="hover:text-[var(--color-text-secondary)] transition-colors">Privacy</Link>
               <Link href="/terms" className="hover:text-[var(--color-text-secondary)] transition-colors">Terms</Link>
             </div>
