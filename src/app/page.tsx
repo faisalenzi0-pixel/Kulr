@@ -429,16 +429,18 @@ export default function HomePage() {
 
       {/* ═══════════ SOCIAL PROOF / STATS ═══════════ */}
       <section className="px-4 py-20 md:py-24">
-        <div className="max-w-[1000px] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
+        <div className="max-w-[1100px] mx-auto">
+          {/* Stats grid */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-0 mb-16 md:mb-20">
             {[
               { value: 240, suffix: "+", label: "Curated Palettes" },
-              { value: 6, suffix: "", label: "Pro Tools" },
-              { value: 10, suffix: "", label: "Colors Per Palette" },
+              { value: 175, suffix: "+", label: "Color Pages" },
+              { value: 12, suffix: "", label: "Pro Tools" },
+              { value: 6, suffix: "", label: "Export Formats" },
               { value: 0, suffix: "", label: "Price — Forever", display: "$0" },
             ].map((stat, i) => (
               <FadeIn key={stat.label} delay={i * 0.08}>
-                <div className={`text-center ${i < 3 ? "md:border-r md:border-[var(--color-border-subtle)]" : ""}`}>
+                <div className={`text-center ${i < 4 ? "md:border-r md:border-[var(--color-border-subtle)]" : ""}`}>
                   <div className="text-4xl md:text-5xl font-bold tracking-tight gradient-text mb-2">
                     {stat.display ?? <AnimatedNumber value={stat.value} suffix={stat.suffix} />}
                   </div>
@@ -447,6 +449,39 @@ export default function HomePage() {
               </FadeIn>
             ))}
           </div>
+
+          {/* Trust strip */}
+          <FadeIn>
+            <div className="surface rounded-2xl p-6 md:p-8">
+              <div className="grid sm:grid-cols-3 gap-6 md:gap-8">
+                {[
+                  {
+                    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>,
+                    title: "100% Browser-Based",
+                    desc: "No uploads, no servers. Every tool runs locally on your device. Your data never leaves your browser.",
+                  },
+                  {
+                    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>,
+                    title: "No Account Needed",
+                    desc: "Start creating immediately. No email, no sign-up, no paywall. Every feature is free with zero limits.",
+                  },
+                  {
+                    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>,
+                    title: "WCAG Compliant",
+                    desc: "Built-in AA/AAA contrast checking, color blindness simulation, and accessible color suggestions.",
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="flex gap-4">
+                    <div className="text-[var(--color-accent-purple)] shrink-0 mt-0.5">{item.icon}</div>
+                    <div>
+                      <h3 className="text-sm font-bold tracking-tight mb-1">{item.title}</h3>
+                      <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 

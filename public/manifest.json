@@ -1,0 +1,50 @@
+{
+  "name": "Kulr — Color Palette Generator & Design Tools",
+  "short_name": "Kulr",
+  "description": "The complete free color toolkit for designers and developers. Generate palettes, extract colors, check contrast, build gradients.",
+  "start_url": "/generate",
+  "display": "standalone",
+  "background_color": "#09090B",
+  "theme_color": "#8B5CF6",
+  "orientation": "any",
+  "categories": ["design", "developer tools", "utilities"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Generate Palette",
+      "short_name": "Generate",
+      "url": "/generate",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Color Picker",
+      "short_name": "Picker",
+      "url": "/picker"
+    },
+    {
+      "name": "Explore Palettes",
+      "short_name": "Explore",
+      "url": "/explore"
+    }
+  ]
+}

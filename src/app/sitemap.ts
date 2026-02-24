@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { BRANDS } from "@/lib/brand-colors";
+import { CSS_NAMED_COLORS } from "@/lib/css-colors";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://kulr.app";
@@ -29,7 +30,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
   }));
 
-  return [...routes, ...brandRoutes].map((route) => ({
+  // Add individual color pages
+  const colorRoutes = CSS_NAMED_COLORS.map((color) => ({
+    path: `/colors/${color.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`,
+    priority: 0.5 as const,
+    changeFrequency: "monthly" as const,
+  }));
+
+  return [...routes, ...brandRoutes, ...colorRoutes].map((route) => ({
     url: `${baseUrl}${route.path}`,
     lastModified: new Date(),
     changeFrequency: route.changeFrequency,

@@ -34,6 +34,13 @@ export const metadata: Metadata = {
   creator: "Kulr",
   icons: {
     icon: "/favicon.svg",
+    apple: "/icon-192.png",
+  },
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Kulr",
   },
   openGraph: {
     title: "Kulr — Free Color Palette Generator & Design Tools",
@@ -128,6 +135,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="theme-color" content="#8B5CF6" />
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3133185312736906"
